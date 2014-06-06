@@ -13,7 +13,7 @@
 
 Mercado mercado = new Mercado();
 ResultSet propostas = null;
-propostas = mercado.listarProposta();
+propostas = mercado.ListaNegociados();
 %>
 <!DOCTYPE html>
 <html>
@@ -26,13 +26,13 @@ propostas = mercado.listarProposta();
         
                <%
                 while(propostas.next()){
-                   
+                    String proprietario = propostas.getString("USUARIO_OFERTA");
                     String ofertante = propostas.getString("usuario_proposta");
                     String proposta = propostas.getString("PROPOSTA");
                     String oferta = propostas.getString("titulo_OFERTA");
                     int id  = propostas.getInt("id");
                   
-                   out.print("<h3>"+ofertante+"</h3> <p> deseja trocar seu(sua) "+proposta+" pelo(a) "+oferta+" ! </p>");
+                   out.print("<h3>"+proprietario+"</h3> <p> aceitou trocar seu(sua) "+oferta+" pelo(a) "+proposta+" de "+ofertante+" !</p>");
                 }
                                
                 %>

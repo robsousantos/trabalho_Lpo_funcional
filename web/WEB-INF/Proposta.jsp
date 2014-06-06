@@ -19,6 +19,7 @@ String nome_usuario =(String) session.getAttribute("nome_usuario");
 Mercado mercado = new Mercado();
 ResultSet ofertas = null;
 ofertas = mercado.listarOfertas();
+String proprietario= null;
 %>
 <!DOCTYPE html>
 <html>
@@ -38,13 +39,16 @@ ofertas = mercado.listarOfertas();
                 
                 <%
                 while(ofertas.next()){
-                    String oferta = ofertas.getString("TITULO");
-                    out.print("<option value='"+oferta+"'>"+oferta+"</option>");
-                    }
+                    int id = ofertas.getInt("ID");
+                    String oferta = ofertas.getString("TITULO_OFERTA");
+                   proprietario = ofertas.getString("USUARIO_OFERTA");
+                    out.print("<option value='"+id+"'>"+oferta+" de "+proprietario+" </option> de "+proprietario);
+                    } 
                                
                 %>
                 
             </select></p>
+            <input type="hidden" name ="proprietario" value="<% out.print(proprietario); %>"
              <p>Oferta: <input type="text" name ="oferta"> </p>
              <p><input type="submit" value="Enviar Proposta"> <input type="reset" value="Cancelar"> </p>
         

@@ -10,10 +10,10 @@
 
 
 <% 
-
+String usuario =(String) session.getAttribute("nome_usuario");
 Mercado mercado = new Mercado();
 ResultSet propostas = null;
-propostas = mercado.listarProposta();
+propostas = mercado.PropostasPorUsuario(usuario);
 %>
 <!DOCTYPE html>
 <html>
@@ -27,12 +27,12 @@ propostas = mercado.listarProposta();
                <%
                 while(propostas.next()){
                    
-                    String ofertante = propostas.getString("usuario_proposta");
-                    String proposta = propostas.getString("PROPOSTA");
-                    String oferta = propostas.getString("titulo_OFERTA");
+                    String ofertante = propostas.getString("USUARIO_PROPOSTA");
+                    String desejo = propostas.getString("TITULO_OFERTA");
+                    String oferta = propostas.getString("PROPOSTA");
                     int id  = propostas.getInt("id");
                   
-                   out.print("<h3>"+ofertante+"</h3> <p> deseja trocar seu(sua) "+proposta+" pelo(a) "+oferta+" ! </p>");
+                   out.print("<h3>"+ofertante+"</h3> <p> deseja trocar seu(sua) "+oferta+" por seu(sua) "+desejo+" deseja aceitar <a href='AtualizandoProposta?id="+id+"&opcao=1' > SIM </a> ou <a href='AtualizandoProposta?id="+id+"&opcao=2' > não </a> ? </p>");
                 }
                                
                 %>

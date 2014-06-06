@@ -6,6 +6,8 @@ package servilets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,19 +15,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import objetos.Mercado;
-import objetos.Oferta;
 import objetos.Proposta;
 
 /**
  *
  * @author Robson
  */
-@WebServlet(name = "criaProposta", urlPatterns = {"/criar_Proposta"})
-public class criaProposta extends HttpServlet {
-    
-    private static Mercado mercado= null;
+@WebServlet(name = "statusDeProposta", urlPatterns = {"/AtualizandoProposta"})
+public class statusDeProposta extends HttpServlet {
 
-    public criaProposta() throws Exception{
+      private static Mercado mercado= null;
+
+          public statusDeProposta() throws Exception{
         try {
             mercado = new Mercado();
         } catch (Exception ex) {
@@ -34,7 +35,7 @@ public class criaProposta extends HttpServlet {
 
 
 }
-
+   
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -50,7 +51,40 @@ public class criaProposta extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
     
-        out.print("salvando oferta");
+    int opcao =Integer.parseInt(request.getParameter("opcao")) ;
+    
+        switch (opcao) {
+            case 1:
+        try {
+            Proposta proposta = new Proposta();
+            proposta.setId(Integer.parseInt(request.getParameter("id")));
+            proposta.setStatus("Negociado");
+            mercado.atualizaProposta(proposta);
+            
+              RequestDispatcher redirecionar = request.getRequestDispatcher("WEB-INF/Propostas recebidas.jsp");
+       redirecionar.forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(statusDeProposta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+                break;
+           case 2:
+        try {
+            Proposta proposta = new Proposta();
+            proposta.setId(Integer.parseInt(request.getParameter("id")));
+            proposta.setStatus("Ofertas");
+            mercado.atualizaProposta(proposta);
+            
+            RequestDispatcher redirecionar = request.getRequestDispatcher("WEB-INF/Propostas recebidas.jsp");
+            redirecionar.forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(statusDeProposta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+                break;
+           
+            }
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,8 +100,7 @@ public class criaProposta extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         RequestDispatcher dispatcher = request.getRequestDispatcher("Oferta.jsp");
-        dispatcher.forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -82,23 +115,7 @@ public class criaProposta extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            Proposta proposta = new Proposta();
-            proposta.setOfertante(request.getParameter("ofertante"));
-            proposta.setOferta(request.getParameter("oferta"));
-            proposta.setDesejo(request.getParameter("desejo"));
-            proposta.setProprietario(request.getParameter("proprietario"));
-            proposta.setStatus("Proposta");
-            
-            mercado.criaProposta(proposta);
-            
-            RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
-           response.sendRedirect("index.jsp");
-            
-        } catch (Exception ex) {
-            throw new ServletException(ex);
-        }
-        
+        processRequest(request, response);
     }
 
     /**

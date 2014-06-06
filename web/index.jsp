@@ -12,9 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1><a href="link?link=1">ofertas</a></h1>
+        <h1><a href="link?link=1">Ver ofertas</a></h1>
         <h1><a href="link?link=2">Criar oferta</a></h1>
-        <h1><a href="link?link=4">Propostas</a></h1>
+        <h1><a href="link?link=4">Ver Propostas</a></h1>
+        <h1><a href="link?link=5">Propostas recebidas</a></h1>
         <h1><a href="link?link=3">Criar proposta</a></h1>
+         <h1><a href="link?link=6">Ver trocas concluidas</a></h1>
     </body>
 </html>

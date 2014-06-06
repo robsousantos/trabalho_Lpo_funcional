@@ -34,9 +34,9 @@ ofertas = mercado.listarOfertas();
                <%
                 while(ofertas.next()){
                     out.print("<tr>");
-                    String titulo = ofertas.getString("TITULO");
+                    String titulo = ofertas.getString("TITULO_OFERTA");
                     String descricao = ofertas.getString("DESCRICAO");
-                    int id  = ofertas.getInt("id");
+                    int id  = ofertas.getInt("ID");
                     int i =1;
                     while(i<=3){
                         switch(i){

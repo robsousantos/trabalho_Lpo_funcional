@@ -55,6 +55,16 @@ public class link extends HttpServlet {
        redirecionar.forward(request, response);
                break;
                     
+          case 5:
+       redirecionar = request.getRequestDispatcher("WEB-INF/Propostas recebidas.jsp");
+       redirecionar.forward(request, response);
+               break;
+          
+                case 6:
+       redirecionar = request.getRequestDispatcher("WEB-INF/negociados.jsp");
+       redirecionar.forward(request, response);
+               break;
+              
        }   
     }
 
