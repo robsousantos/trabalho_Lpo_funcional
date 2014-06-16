@@ -12,8 +12,8 @@
 <% 
 
 Mercado mercado = new Mercado();
-ResultSet propostas = null;
-propostas = mercado.ListaNegociados();
+ResultSet negociados = null;
+negociados = mercado.ListaNegociados();
 %>
 <!DOCTYPE html>
 <html>
@@ -22,19 +22,24 @@ propostas = mercado.ListaNegociados();
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Propostas</h1>
+        <h1><a href="index.jsp">Inicio</a> > Trocas concluidas</h1>
         
                <%
-                while(propostas.next()){
-                    String proprietario = propostas.getString("USUARIO_OFERTA");
-                    String ofertante = propostas.getString("usuario_proposta");
-                    String proposta = propostas.getString("PROPOSTA");
-                    String oferta = propostas.getString("titulo_OFERTA");
-                    int id  = propostas.getInt("id");
-                  
-                   out.print("<h3>"+proprietario+"</h3> <p> aceitou trocar seu(sua) "+oferta+" pelo(a) "+proposta+" de "+ofertante+" !</p>");
-                }
-                               
+              int numRegistros = 0; 
+                        while(negociados.next()){
+                            String proprietario = negociados.getString("USUARIO_OFERTA");
+                            String ofertante = negociados.getString("usuario_proposta");
+                            String proposta = negociados.getString("PROPOSTA");
+                            String oferta = negociados.getString("titulo_OFERTA");
+                            int id  = negociados.getInt("id");
+
+                        out.print("<h3>"+proprietario+"</h3> <p> aceitou trocar seu(sua) "+oferta+" pelo(a) "+proposta+" de "+ofertante+" !</p>");
+                        numRegistros++;
+                        }
+              if (numRegistros == 0){
+              out.print("<h3> nenhuma troca foi efetuada <a href='index.jsp'> voltar ao inicio</a></h3>");
+              }
+                             
                 %>
              
    

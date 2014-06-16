@@ -18,7 +18,7 @@ String nome_usuario =(String) session.getAttribute("nome_usuario");
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Cria Oferta</h1>
+        <h1><a href="index.jsp">Inicio</a> > Cria Oferta</h1>
         
         <form action="criar_Oferta" method ="post">
             <p> Ola <% out.print(nome_usuario); %> Preencha os campos abaixo para criar sua oferta.

@@ -22,9 +22,10 @@ propostas = mercado.PropostasPorUsuario(usuario);
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Propostas</h1>
+        <h1><a href="index.jsp">Inicio</a> > Propostas recebidas</h1>
         
                <%
+                int numRegistros = 0;  
                 while(propostas.next()){
                    
                     String ofertante = propostas.getString("USUARIO_PROPOSTA");
@@ -33,8 +34,13 @@ propostas = mercado.PropostasPorUsuario(usuario);
                     int id  = propostas.getInt("id");
                   
                    out.print("<h3>"+ofertante+"</h3> <p> deseja trocar seu(sua) "+oferta+" por seu(sua) "+desejo+" deseja aceitar <a href='AtualizandoProposta?id="+id+"&opcao=1' > SIM </a> ou <a href='AtualizandoProposta?id="+id+"&opcao=2' > não </a> ? </p>");
+                
+                numRegistros++;
                 }
-                               
+                
+                if (numRegistros==0){
+                    out.print("<h3>Você não recebeu nenhuma proposta <a href='index.jsp'> Voltar </a> </h3>");
+                    };
                 %>
              
    

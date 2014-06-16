@@ -22,11 +22,12 @@ ofertas = mercado.listarOfertas();
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Ofertas</h1>
+        <h1><a href="index.jsp">Inicio</a> > Ofertas</h1>
         <table >
             <tr>
                 <td>Titulo </td>
                 <td>Descrição</td>
+                <TD>Proprietário</td>
                 <td>Ação</td>
                 
             </tr>
@@ -36,9 +37,10 @@ ofertas = mercado.listarOfertas();
                     out.print("<tr>");
                     String titulo = ofertas.getString("TITULO_OFERTA");
                     String descricao = ofertas.getString("DESCRICAO");
+                    String proprietario = ofertas.getString("USUARIO_OFERTA");
                     int id  = ofertas.getInt("ID");
                     int i =1;
-                    while(i<=3){
+                    while(i<=4){
                         switch(i){
                         case 1:
                             out.print("<td>"+titulo+"</td>");
@@ -49,6 +51,10 @@ ofertas = mercado.listarOfertas();
                             i++;
                             break;
                         case 3:
+                            out.print("<td>"+proprietario+"</td>");
+                            i++;
+                            break;
+                        case 4:
                             out.print("<td><a href='link?link=3'>Fazer proposta</a></td>");
                             i++;
                             break;

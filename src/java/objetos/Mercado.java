@@ -23,6 +23,8 @@ public class Mercado {
      private static PreparedStatement efetuarLogin;
     private static PreparedStatement atualizaproposta;
     private static PreparedStatement listaNegociados;
+    private static PreparedStatement listaOfertasdoUsuario;
+    private static PreparedStatement listaOfertasdeOutrosUsuarios;
      
     
      
@@ -34,6 +36,9 @@ public class Mercado {
         criaOferta = conexao.prepareStatement("INSERT INTO MERCADO (TITULO_OFERTA, DESCRICAO,USUARIO_OFERTA,GRUPO) VALUES ( ?, ?, ? ,?)");
         criaProposta = conexao.prepareStatement("UPDATE MERCADO SET USUARIO_PROPOSTA = ?, DESEJO =?,PROPOSTA=?, GRUPO= ? WHERE ID = ?");
         listaOfertas = conexao.prepareStatement("SELECT * FROM MERCADO WHERE GRUPO = 'Ofertas' ");
+        listaOfertasdoUsuario = conexao.prepareStatement("SELECT * FROM MERCADO WHERE GRUPO = 'Ofertas' AND USUARIO_OFERTA =? ");
+        listaOfertasdeOutrosUsuarios = conexao.prepareStatement("SELECT * FROM MERCADO WHERE GRUPO = 'Ofertas' AND USUARIO_OFERTA <>? ");
+   
         listaPropostas = conexao.prepareStatement("SELECT * FROM MERCADO WHERE GRUPO = 'Proposta' ");
         propostasPorUsuario = conexao.prepareStatement("SELECT * FROM MERCADO WHERE GRUPO = 'Proposta' and USUARIO_OFERTA = ?");
         efetuarLogin = conexao.prepareStatement("SELECT * FROM USUARIO WHERE NOME = ?");
@@ -114,4 +119,22 @@ public class Mercado {
    
    }
     
+   
+   public ResultSet listaOfertasdoUsuario(String nome_usuario) throws Exception{
+   
+   listaOfertasdoUsuario.setString(1, nome_usuario);
+   ResultSet negociados = listaOfertasdoUsuario.executeQuery();
+   
+   return negociados;
+   
+   }
+   
+   public ResultSet listaOfertasdeOutrosUsuarios(String nome_usuario) throws Exception{
+   
+   listaOfertasdeOutrosUsuarios.setString(1, nome_usuario);
+   ResultSet negociados = listaOfertasdeOutrosUsuarios.executeQuery();
+   
+   return negociados;
+   
+   }
 }

@@ -22,19 +22,25 @@ propostas = mercado.listarProposta();
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Propostas</h1>
+        <h1><a href="index.jsp">Inicio</a> > Propostas</h1>
         
                <%
-                while(propostas.next()){
-                   
-                    String ofertante = propostas.getString("usuario_proposta");
-                    String proposta = propostas.getString("PROPOSTA");
-                    String oferta = propostas.getString("titulo_OFERTA");
-                    int id  = propostas.getInt("id");
-                  
-                   out.print("<h3>"+ofertante+"</h3> <p> deseja trocar seu(sua) "+proposta+" pelo(a) "+oferta+" ! </p>");
-                }
-                               
+                int numRegistros = 0; 
+               
+                        while(propostas.next()){
+
+                            String ofertante = propostas.getString("usuario_proposta");
+                            String proposta = propostas.getString("PROPOSTA");
+                            String oferta = propostas.getString("titulo_OFERTA");
+                            int id  = propostas.getInt("id");
+
+                        out.print("<h3>"+ofertante+"</h3> <p> deseja trocar seu(sua) "+proposta+" pelo(a) "+oferta+" ! </p>");
+                        
+                        numRegistros++;}
+               if (numRegistros ==0){
+                
+                out.print("<h3>Não existe nenhuma proposta cadastrada <a href='index.jsp'> Voltar ao inicio </a></h3>");
+                };
                 %>
              
    
