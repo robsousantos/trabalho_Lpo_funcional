@@ -15,11 +15,12 @@ String nome_usuario =(String) session.getAttribute("nome_usuario");
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+       <link rel="stylesheet" type="text/css" href="css/estilo.css">
+        <title>Mercado de trocas</title> </head>
     <body>
-        <h1><a href="index.jsp">Inicio</a> > Cria Oferta</h1>
-        
+        <h1>Mercado de trocas</h1>
+        <h2><a href="index.jsp">Inicio</a> > Criar oferta</h2>
+     
         <form action="criar_Oferta" method ="post">
             <p> Ola <% out.print(nome_usuario); %> Preencha os campos abaixo para criar sua oferta.
                 

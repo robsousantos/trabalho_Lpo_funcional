@@ -19,11 +19,12 @@ negociados = mercado.ListaNegociados();
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+<link rel="stylesheet" type="text/css" href="css/estilo.css">
+        <title>Mercado de trocas</title> </head>
     <body>
-        <h1><a href="index.jsp">Inicio</a> > Trocas concluidas</h1>
-        
+        <h1>Mercado de trocas</h1>
+        <h2><a href="index.jsp">Inicio</a> > Trocas concluidas</h2>
+             
                <%
               int numRegistros = 0; 
                         while(negociados.next()){

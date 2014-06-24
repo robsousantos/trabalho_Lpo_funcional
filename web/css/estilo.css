@@ -1,0 +1,43 @@
+/* 
+    Document   : estilo
+    Created on : 24/06/2014, 10:22:47
+    Author     : Robson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+h1{
+    color:red;
+    text-align: center;
+    
+}
+
+#login{
+    position: relative;
+    
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+}
+
+a{
+    color:black;
+    text-decoration: none;
+}
+
+
+a:hover{
+    color:red;
+    text-decoration: underline;
+}
+
+.linhatitulo{
+    font-size: 16px;
+    font-weight: bold;
+    color:red;
+    
+}

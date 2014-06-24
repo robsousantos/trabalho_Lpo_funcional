@@ -9,14 +9,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Mercado de trocas</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
     </head>
     <body>
-        <form action="Login" method="post">
-        <h1>Login</h1>
-        <p>Nome: <input type="text" name ="nome"></p>
-        <p>Senha: <input type="password" name ="senha"></p>
-        <p><input type="submit" value="Efetuar login"> <input type="reset" value="Cancelar"></p>
-        </form>
+        
+        <h1>Mercado de trocas </h1>
+        
+        <div id="login">
+                <form action="Login" method="post">
+
+                    <h2>Login</h2>
+                <p>Nome: <input type="text" name ="nome"></p>
+                <p>Senha: <input type="password" name ="senha"></p>
+                <p><input type="submit" value="Efetuar login"> <input type="reset" value="Cancelar"></p>
+                </form>
+       </div>
     </body>
 </html>
